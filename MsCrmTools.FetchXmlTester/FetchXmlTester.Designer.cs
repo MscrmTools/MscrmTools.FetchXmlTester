@@ -30,24 +30,24 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FetchXmlTester));
-            CSRichTextBoxSyntaxHighlighting.XMLViewerSettings xmlViewerSettings5 = new CSRichTextBoxSyntaxHighlighting.XMLViewerSettings();
-            CSRichTextBoxSyntaxHighlighting.XMLViewerSettings xmlViewerSettings6 = new CSRichTextBoxSyntaxHighlighting.XMLViewerSettings();
+            CSRichTextBoxSyntaxHighlighting.XMLViewerSettings xmlViewerSettings2 = new CSRichTextBoxSyntaxHighlighting.XMLViewerSettings();
             this.toolStripMenu = new System.Windows.Forms.ToolStrip();
             this.tsbClose = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbExecute = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolImageList = new System.Windows.Forms.ImageList(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.txtResponse = new CSRichTextBoxSyntaxHighlighting.XMLViewer();
+            this.dgvResult = new System.Windows.Forms.DataGridView();
             this.txtRequest = new CSRichTextBoxSyntaxHighlighting.XMLViewer();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripMenu.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStripMenu
@@ -60,7 +60,8 @@
             this.toolStripButton1});
             this.toolStripMenu.Location = new System.Drawing.Point(0, 0);
             this.toolStripMenu.Name = "toolStripMenu";
-            this.toolStripMenu.Size = new System.Drawing.Size(911, 25);
+            this.toolStripMenu.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.toolStripMenu.Size = new System.Drawing.Size(1366, 38);
             this.toolStripMenu.TabIndex = 2;
             this.toolStripMenu.Text = "toolStrip1";
             // 
@@ -69,23 +70,37 @@
             this.tsbClose.Image = ((System.Drawing.Image)(resources.GetObject("tsbClose.Image")));
             this.tsbClose.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbClose.Name = "tsbClose";
-            this.tsbClose.Size = new System.Drawing.Size(102, 22);
+            this.tsbClose.Size = new System.Drawing.Size(145, 33);
             this.tsbClose.Text = "Close this tool";
             this.tsbClose.Click += new System.EventHandler(this.TsbCloseClick);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 38);
             // 
             // tsbExecute
             // 
             this.tsbExecute.Image = ((System.Drawing.Image)(resources.GetObject("tsbExecute.Image")));
             this.tsbExecute.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbExecute.Name = "tsbExecute";
-            this.tsbExecute.Size = new System.Drawing.Size(67, 22);
+            this.tsbExecute.Size = new System.Drawing.Size(99, 33);
             this.tsbExecute.Text = "Execute";
             this.tsbExecute.Click += new System.EventHandler(this.TsbExecuteClick);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 38);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(133, 33);
+            this.toolStripButton1.Text = "Format Xml";
+            this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1Click);
             // 
             // toolImageList
             // 
@@ -100,95 +115,82 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(3, 28);
+            this.tabControl1.Location = new System.Drawing.Point(4, 43);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(905, 569);
+            this.tabControl1.Size = new System.Drawing.Size(1358, 875);
             this.tabControl1.TabIndex = 3;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.txtRequest);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(897, 543);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabPage1.Size = new System.Drawing.Size(1350, 842);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Request";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.txtResponse);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Controls.Add(this.dgvResult);
+            this.tabPage2.Location = new System.Drawing.Point(4, 29);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(897, 543);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabPage2.Size = new System.Drawing.Size(1350, 842);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Response";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // txtResponse
+            // dgvResult
             // 
-            this.txtResponse.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtResponse.Location = new System.Drawing.Point(6, 6);
-            this.txtResponse.Name = "txtResponse";
-            xmlViewerSettings5.AttributeKey = System.Drawing.Color.Red;
-            xmlViewerSettings5.AttributeValue = System.Drawing.Color.Blue;
-            xmlViewerSettings5.Element = System.Drawing.Color.DarkRed;
-            xmlViewerSettings5.Tag = System.Drawing.Color.Blue;
-            xmlViewerSettings5.Value = System.Drawing.Color.Black;
-            this.txtResponse.Settings = xmlViewerSettings5;
-            this.txtResponse.Size = new System.Drawing.Size(885, 531);
-            this.txtResponse.TabIndex = 0;
-            this.txtResponse.Text = "";
+            this.dgvResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvResult.Location = new System.Drawing.Point(4, 5);
+            this.dgvResult.Name = "dgvResult";
+            this.dgvResult.RowHeadersWidth = 62;
+            this.dgvResult.RowTemplate.Height = 28;
+            this.dgvResult.Size = new System.Drawing.Size(1342, 832);
+            this.dgvResult.TabIndex = 0;
             // 
             // txtRequest
             // 
             this.txtRequest.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRequest.Location = new System.Drawing.Point(6, 6);
+            this.txtRequest.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRequest.Location = new System.Drawing.Point(9, 9);
+            this.txtRequest.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtRequest.Name = "txtRequest";
-            xmlViewerSettings6.AttributeKey = System.Drawing.Color.Red;
-            xmlViewerSettings6.AttributeValue = System.Drawing.Color.Blue;
-            xmlViewerSettings6.Element = System.Drawing.Color.DarkRed;
-            xmlViewerSettings6.Tag = System.Drawing.Color.Blue;
-            xmlViewerSettings6.Value = System.Drawing.Color.Black;
-            this.txtRequest.Settings = xmlViewerSettings6;
-            this.txtRequest.Size = new System.Drawing.Size(885, 531);
+            xmlViewerSettings2.AttributeKey = System.Drawing.Color.Red;
+            xmlViewerSettings2.AttributeValue = System.Drawing.Color.Blue;
+            xmlViewerSettings2.Element = System.Drawing.Color.DarkRed;
+            xmlViewerSettings2.Tag = System.Drawing.Color.Blue;
+            xmlViewerSettings2.Value = System.Drawing.Color.Black;
+            this.txtRequest.Settings = xmlViewerSettings2;
+            this.txtRequest.Size = new System.Drawing.Size(1326, 815);
             this.txtRequest.TabIndex = 1;
             this.txtRequest.Text = "";
             // 
-            // toolStripSeparator2
+            // FetchXmlTester
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(89, 22);
-            this.toolStripButton1.Text = "Format Xml";
-            this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1Click);
-            // 
-            // MainControl
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.toolStripMenu);
-            this.Name = "MainControl";
-            this.Size = new System.Drawing.Size(911, 600);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Name = "FetchXmlTester";
+            this.Size = new System.Drawing.Size(1366, 923);
             this.toolStripMenu.ResumeLayout(false);
             this.toolStripMenu.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,9 +206,9 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton tsbExecute;
-        private CSRichTextBoxSyntaxHighlighting.XMLViewer txtResponse;
         private CSRichTextBoxSyntaxHighlighting.XMLViewer txtRequest;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.DataGridView dgvResult;
     }
 }

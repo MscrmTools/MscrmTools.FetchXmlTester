@@ -1,11 +1,11 @@
 ﻿using CSRichTextBoxSyntaxHighlighting;
-using Microsoft.Crm.Sdk.Messages;
+using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Query;
 using System;
+using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Text;
+using System.Linq;
 using System.Windows.Forms;
-using System.Xml;
 using XrmToolBox.Extensibility;
 
 namespace MsCrmTools.FetchXmlTester
@@ -37,27 +37,58 @@ namespace MsCrmTools.FetchXmlTester
 
         #region Methods
 
-        private string IndentXMLString(string xml)
+        private DataTable GetDataTable(EntityCollection ec)
         {
-            var ms = new MemoryStream();
-            var xtw = new XmlTextWriter(ms, Encoding.Unicode);
-            var doc = new XmlDocument();
+            DataTable dTable = new DataTable();
+            int iElement = 0;
 
-            try
+            if (ec.Entities.Count == 0)
             {
-                doc.LoadXml(xml);
-
-                xtw.Formatting = Formatting.Indented;
-                doc.WriteContentTo(xtw);
-                xtw.Flush();
-                ms.Seek(0, SeekOrigin.Begin);
-                var sr = new StreamReader(ms);
-                return sr.ReadToEnd();
+                return dTable;
             }
-            catch (Exception ex)
+
+            var attributeNames = ec.Entities.SelectMany(e => e.Attributes.Select(a => a.Key)).Distinct().OrderBy(a => a).ToList();
+
+            //Defining the ColumnName for the datatable
+            for (iElement = 0; iElement <= attributeNames.Count - 1; iElement++)
             {
-                MessageBox.Show(ex.ToString());
-                return null;
+                dTable.Columns.Add(attributeNames[iElement]);
+            }
+
+            foreach (Entity entity in ec.Entities)
+            {
+                DataRow dRow = dTable.NewRow();
+                for (int i = 0; i <= entity.Attributes.Count - 1; i++)
+                {
+                    string colName = entity.Attributes.Keys.ElementAt(i);
+                    dRow[colName] = GetValue(entity.Attributes.Values.ElementAt(i));
+                }
+                dTable.Rows.Add(dRow);
+            }
+            return dTable;
+        }
+
+        private object GetValue(object o)
+        {
+            if (o is EntityReference er)
+            {
+                return er.Id.ToString();
+            }
+            else if (o is OptionSetValue osv)
+            {
+                return osv.Value;
+            }
+            else if (o is Money m)
+            {
+                return m.Value;
+            }
+            else if (o is OptionSetValueCollection osvc)
+            {
+                return string.Join(",", osvc.Select(opt => opt.Value));
+            }
+            else
+            {
+                return o;
             }
         }
 
@@ -69,23 +100,21 @@ namespace MsCrmTools.FetchXmlTester
                 AsyncArgument = txtRequest.Text,
                 Work = (bw, e) =>
                 {
-                    var request = new ExecuteFetchRequest { FetchXml = e.Argument.ToString() };
-                    var response = (ExecuteFetchResponse)Service.Execute(request);
+                    var response = Service.RetrieveMultiple(new FetchExpression(e.Argument.ToString()));
 
-                    e.Result = response.FetchXmlResult;
+                    e.Result = response;
                 },
                 PostWorkCallBack = e =>
                 {
-                    if (e.Error == null)
-                    {
-                        txtResponse.Text = IndentXMLString(e.Result.ToString());
-                        tabControl1.SelectedTab = tabPage2;
-                    }
-                    else
+                    if (e.Error != null)
                     {
                         MessageBox.Show(this, @"An error occured: " + e.Error.Message, @"Error", MessageBoxButtons.OK,
-                                        MessageBoxIcon.Error);
+                                      MessageBoxIcon.Error);
+                        return;
                     }
+
+                    dgvResult.DataSource = GetDataTable((EntityCollection)e.Result);
+                    tabControl1.SelectedTab = tabPage2;
                 }
             });
         }
