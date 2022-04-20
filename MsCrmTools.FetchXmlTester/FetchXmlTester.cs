@@ -86,6 +86,10 @@ namespace MsCrmTools.FetchXmlTester
             {
                 return string.Join(",", osvc.Select(opt => opt.Value));
             }
+            else if (o is AliasedValue av)
+            {
+                return GetValue(av.Value);
+            }
             else
             {
                 return o;
