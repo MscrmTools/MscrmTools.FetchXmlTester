@@ -119,6 +119,9 @@ namespace MsCrmTools.FetchXmlTester
 
                     dgvResult.DataSource = GetDataTable((EntityCollection)e.Result);
                     tabControl1.SelectedTab = tabPage2;
+
+                    lblCountResult.Visible = true;
+                    lblCountResult.Text = $"Number of rows returned: {((EntityCollection)e.Result).Entities.Count}";
                 }
             });
         }
