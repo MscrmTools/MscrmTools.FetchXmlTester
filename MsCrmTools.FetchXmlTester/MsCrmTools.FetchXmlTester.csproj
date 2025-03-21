@@ -114,27 +114,6 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NuGet.Common, Version=5.9.1.11, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\NuGet.Common.5.9.1\lib\net45\NuGet.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="NuGet.Configuration, Version=5.9.1.11, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\NuGet.Configuration.5.9.1\lib\net45\NuGet.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="NuGet.Core, Version=2.12.0.817, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\NuGet.Core.2.12.0\lib\net40-Client\NuGet.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="NuGet.Frameworks, Version=5.9.1.11, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\NuGet.Frameworks.5.9.1\lib\net40\NuGet.Frameworks.dll</HintPath>
-    </Reference>
-    <Reference Include="NuGet.Packaging, Version=5.9.1.11, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\NuGet.Packaging.5.9.1\lib\netstandard2.0\NuGet.Packaging.dll</HintPath>
-    </Reference>
-    <Reference Include="NuGet.Protocol, Version=5.9.1.11, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\NuGet.Protocol.5.9.1\lib\netstandard2.0\NuGet.Protocol.dll</HintPath>
-    </Reference>
-    <Reference Include="NuGet.Versioning, Version=5.9.1.11, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\NuGet.Versioning.5.9.1\lib\net45\NuGet.Versioning.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="ScintillaNET, Version=3.6.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\jacobslusser.ScintillaNET.3.6.3\lib\net40\ScintillaNET.dll</HintPath>
@@ -235,6 +214,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppCode\CharacterEncoder.cs" />
+    <Compile Include="AppCode\ListViewItemComparer.cs" />
+    <Compile Include="AppCode\QueryInfo.cs" />
     <Compile Include="AppCode\XMLViewer.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -265,6 +246,36 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Open32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Connect32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Development32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hide32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Restart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\approved.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unchecked.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
