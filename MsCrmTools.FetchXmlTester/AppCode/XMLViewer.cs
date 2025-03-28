@@ -21,7 +21,6 @@
 
 using System;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
@@ -154,19 +153,20 @@ namespace CSRichTextBoxSyntaxHighlighting
                 // Construct the Rtf of child elements.
                 if (element.HasElements)
                 {
-                    foreach(var node in element.Nodes())
+                    foreach (var node in element.Nodes())
                     {
-                        if(node is XElement e) {
+                        if (node is XElement e)
+                        {
                             string childElementRtfContent =
                           ProcessElement(e, level + 1);
                             childElementsRtfContent.Append(childElementRtfContent);
                         }
-                        else if(node is XComment c)
-                        { 
-                        childElementsRtfContent.AppendFormat(@"{0}\cf{1} <!-- {2} -->\par",
-                           new string(' ', 4 * (level + 1)),
-                           XMLViewerSettings.CommentID,
-                           CharacterEncoder.Encode(c.Value.ToString().Trim()));
+                        else if (node is XComment c)
+                        {
+                            childElementsRtfContent.AppendFormat(@"{0}\cf{1} <!-- {2} -->\par",
+                               new string(' ', 4 * (level + 1)),
+                               XMLViewerSettings.CommentID,
+                               c.Value.ToString().Trim());
                         }
                     }
                 }
@@ -200,7 +200,7 @@ namespace CSRichTextBoxSyntaxHighlighting
                 foreach (XAttribute attribute in element.Attributes())
                 {
                     string attributeRtfContent = string.Format(
-                        @" \cf{0} {3}\cf{1} =\cf0 ""\cf{2} {4}\cf0 """,
+                        @" \cf{0} {3}\cf{1} =\cf0 ""\cf{2} {4}\cf0""",
                         XMLViewerSettings.AttributeKeyID,
                         XMLViewerSettings.TagID,
                         XMLViewerSettings.AttributeValueID,
@@ -208,7 +208,6 @@ namespace CSRichTextBoxSyntaxHighlighting
                        CharacterEncoder.Encode(attribute.Value));
                     attributesRtfContent.Append(attributeRtfContent);
                 }
-                attributesRtfContent.Append(" ");
             }
 
             return string.Format(elementRtfFormat, attributesRtfContent,
