@@ -37,6 +37,7 @@ namespace MsCrmTools.FetchXmlTester
                 Tag = Color.Blue,
                 Element = Color.DarkRed,
                 Value = Color.Black,
+                Comment = Color.Green
             };
 
             //viewer.Settings = viewerSetting;

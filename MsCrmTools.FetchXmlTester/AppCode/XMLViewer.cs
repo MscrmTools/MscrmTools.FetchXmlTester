@@ -21,6 +21,7 @@
 
 using System;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
@@ -46,6 +47,7 @@ namespace CSRichTextBoxSyntaxHighlighting
                         Tag = Color.Blue,
                         Element = Color.DarkRed,
                         Value = Color.Black,
+                        Comment = Color.Green
                     };
                 }
                 return settings;
@@ -152,11 +154,20 @@ namespace CSRichTextBoxSyntaxHighlighting
                 // Construct the Rtf of child elements.
                 if (element.HasElements)
                 {
-                    foreach (var childElement in element.Elements())
+                    foreach(var node in element.Nodes())
                     {
-                        string childElementRtfContent =
-                            ProcessElement(childElement, level + 1);
-                        childElementsRtfContent.Append(childElementRtfContent);
+                        if(node is XElement e) {
+                            string childElementRtfContent =
+                          ProcessElement(e, level + 1);
+                            childElementsRtfContent.Append(childElementRtfContent);
+                        }
+                        else if(node is XComment c)
+                        { 
+                        childElementsRtfContent.AppendFormat(@"{0}\cf{1} <!-- {2} -->\par",
+                           new string(' ', 4 * (level + 1)),
+                           XMLViewerSettings.CommentID,
+                           CharacterEncoder.Encode(c.Value.ToString().Trim()));
+                        }
                     }
                 }
 
